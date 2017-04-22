@@ -26,5 +26,11 @@ if __name__ == '__main__':
     # Unit test
     assert walk(rng(seed=1), 10) == [-1, 0, 1, 0, -1, -2, -1, 0, -1, -2]
 
-    # Actual results
-    print(walk(rng(seed=2), 10))
+    # Random walk for 10 steps
+    seed = 1
+    x = walk(rng(seed=1), 10)
+
+    # Display & save results
+    print(x)
+    with open("results-R4-%d.txt" % seed, "w") as file:
+        file.write(str(x))

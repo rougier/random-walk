@@ -16,6 +16,12 @@ if __name__ == '__main__':
     random.seed(1)
     assert walk(10) == [-1, 0, 1, 0, -1, -2, -1, 0, -1, -2]
 
-    # Actual results
-    random.seed(2)
-    print(walk(10))
+    # Random walk for 10 steps
+    seed = 1
+    random.seed(seed)
+    x = walk(10)
+
+    # Dipslay & ave results
+    print(x)
+    with open("results-R3-%d.txt" % seed, "w") as file:
+        file.write(str(x))

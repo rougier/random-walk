@@ -4,9 +4,14 @@ import random
 from itertools import accumulate
 
 # Random number generator initialization
-random.seed(1)
+seed = 1
+random.seed(seed)
 
-# Compute random walk for 10 steps
+# Random walk for 10 steps
 steps = random.choices([-1,+1], k=10)
 x = list(accumulate(steps))
+
+# Display & save results
 print(x) 
+with open("results-R2-%d.txt" % seed, "w") as file:
+    file.write(str(x))

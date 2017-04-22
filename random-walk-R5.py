@@ -1,5 +1,3 @@
-#! /usr/bin/env python3
-# -----------------------------------------------------------------------------
 # Random walk (R5: re-usable)
 # Copyright (c) 2017 Nicolas P. Rougier and Fabien C.Y. Benureau
 # Release under the BSD 2-clause license
@@ -23,11 +21,14 @@ def rng(seed):
     state = rng.get_state()
     rng.set_state((state[0], keys[:-1], state[2], state[3], state[4]))
     return rng
+
+def test():
+    """ Unit tests """
+
+    return  walk(rng(seed=1), 10) == [-1, 0, 1, 0, -1, -2, -1, 0, -1, -2]
+    
     
 if __name__ == '__main__':
-    # Unit test
-    # assert walk(rng(seed=1), 10) == [-1, 0, 1, 0, -1, -2, -1, 0, -1, -2]
-    
     import argparse
     parser = argparse.ArgumentParser("Random walk")
     parser.add_argument('--seed', type=int, default=1,
@@ -36,6 +37,12 @@ if __name__ == '__main__':
                         help='Number of step(s) to walk')
     args = parser.parse_args()
 
+    # Random walk for n steps
+    x = walk(rng(args.seed), args.n)
+
+    # Display & save results
     print("Seed:", args.seed)
     print("Number of steps:", args.n)
-    print("Result:",  walk(rng(args.seed), args.n))
+    print("Result:",  x)
+    with open("results-R5-%d.txt" % args.seed, "w") as file:
+        file.write(str(x))
