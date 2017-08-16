@@ -2,7 +2,7 @@
 # Copyright (c) 2017 Nicolas P. Rougier and Fabien C. Y. Benureau
 # Release under the BSD 2-clause license
 # Tested with CPython 3.6.1 / macOS 10.12.4 / 64 bits architecture
-import random
+import os, sys, datetime, random
 
 def walk():
     path = []
@@ -26,6 +26,10 @@ path = walk()
 
 # Display & save results
 print(path)
-results = {'data': path, 'seed': seed}
+results = { 'data':      path,
+            'seed':      seed,
+            'timestamp': str(datetime.datetime.utcnow())
+            'os' :       os.uname().version,
+            'system' :   sys.version }
 with open("results-R3.txt", "w") as fd:
     fd.write(str(results))
