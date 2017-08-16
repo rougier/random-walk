@@ -1,2 +1,1 @@
-Source code for *The R Quintuplet (R⁵)*, Nicolas P. Rougier and Fabien
-C. Y. Benureau, 2017.
+Source code for **Re-run, Repeat, Reproduce, Reuse, Replicate: Transforming Code into Scientific Contributions**, Fabien C. Y. Benureau and Nicolas P. Rougier, 2017.
