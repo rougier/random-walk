@@ -1,17 +1,17 @@
 # Random walk (R2: repeatable)
 # Tested with Python 3
 import random
-from itertools import accumulate
 
-# Random number generator initialization
-seed = 1
-random.seed(seed)
+random.seed(0) # RNG initialization
 
-# Random walk for 10 steps
-steps = random.choices([-1,+1], k=10)
-x = list(accumulate(steps))
+x =  0
+path = []
+for i in range(10):
+    step = random.choice([-1,+1])
+    x += step
+    path.append(x)
 
-# Display & save results
-print(x) 
-with open("results-R2-%d.txt" % seed, "w") as file:
-    file.write(str(x))
+print(path)
+# Saving output to disk
+with open("results-R2.txt", "w") as fd: 
+    fd.write(str(path))

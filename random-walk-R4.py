@@ -1,36 +1,42 @@
-# Random walk (R4: replicable)
+# Random walk (R4: re-usable)
 # Copyright (c) 2017 Nicolas P. Rougier and Fabien C.Y. Benureau
 # Release under the BSD 2-clause license
 # Tested with Python 3.6 / Numpy 1.12.0 / macOS 10.12.4 / 64 bits architecture
 import random
-import numpy as np
 
-def walk(rng, n):
-    """ Random walk for n steps """
+def walk(x0=0, step=1, count=10, seed=0):
+    """ Random walk 
+        x0   : initial position (default 0)
+        step : step size (default 1)
+        count: number of steps (default 10)
+        seed : seed for the initialization of the random generator (default 0)
+    """
+    x = x0
+    path = []
+    random.seed(seed)
+    for i in range(count):
+        if random.uniform(-1,+1) > 0:
+            x = x + step
+        else:
+            x = x - step
+        path.append(x)
+    return path
 
-    steps = 2*(rng.uniform(-1,+1,n) > 0) - 1
-    return steps.cumsum().tolist()
-
-def rng(seed):
-    """ Return a random number generator initialized with seed """ 
-    
-    rng = random.Random()
-    rng.seed(seed)
-    _, keys, _ = rng.getstate()
-    rng = np.random.RandomState()
-    state = rng.get_state()
-    rng.set_state((state[0], keys[:-1], state[2], state[3], state[4]))
-    return rng
 
 if __name__ == '__main__':
-    # Unit test
-    assert walk(rng(seed=1), 10) == [-1, 0, 1, 0, -1, -2, -1, 0, -1, -2]
+    # Unit test checking reproducibility
+    assert walk(0, 1, 10, 1) == [-1, 0, 1, 0, -1, -2, -1, 0, -1, -2]
 
-    # Random walk for 10 steps
-    seed = 1
-    x = walk(rng(seed=1), 10)
+    # Simulation parameters
+    parameters = { 'x0':    0,
+                   'step':  1,
+                   'count': 10,
+                   'seed' : 1 }
+    path = walk(**parameters)
+    results = {'data':  path, 'parameters': parameters}
 
-    # Display & save results
-    print(x)
-    with open("results-R4-%d.txt" % seed, "w") as file:
-        file.write(str(x))
+    # Save & display results
+    with open("results-R4.txt", "w") as fd:
+        fd.write(str(results))
+
+    print(path)

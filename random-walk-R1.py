@@ -1,8 +1,11 @@
-# Random walk (R2: re-runnable)
+# Random walk (R1: re-runnable)
 # Tested with Python 3
 import random
-from itertools import accumulate
 
-steps = random.choices([-1,+1], k=10)
-x = list(accumulate(steps))
-print(x) 
+walk, total = [], 0
+for i in range(10):
+    step = random.choice([-1,+1])
+    total += step
+    walk.append(total)
+
+print(walk)
