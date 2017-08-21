@@ -8,7 +8,7 @@ def walk():
     path = []
     x = 0
     for i in range(10):
-        if random.uniform(-1,+1) > 0:
+        if random.uniform(-1, +1) > 0:
             x = x + 1
         else:
             x = x - 1
@@ -22,7 +22,7 @@ if subprocess.call(("git", "diff-index", "--quiet", "HEAD")):
 
 # Get git hash if any
 revision = subprocess.check_output(("git", "rev-parse", "HEAD"))
-    
+
 # Unit test
 random.seed(1)
 assert walk() == [-1, 0, 1, 0, -1, -2, -1, 0, -1, -2]
@@ -34,10 +34,10 @@ path = walk()
 
 # Display & save results
 print(path)
-results = { 'data':      path,
-            'seed':      seed,
-            'timestamp': str(datetime.datetime.utcnow()),
-            'revision':  revision,
-            'system' :   sys.version }
+results = {'data'     : path,
+           'seed'     : seed,
+           'timestamp': str(datetime.datetime.utcnow()),
+           'revision' : revision,
+           'system'   : sys.version}
 with open("results-R3.txt", "w") as fd:
     fd.write(str(results))

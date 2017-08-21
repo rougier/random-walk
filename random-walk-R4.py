@@ -5,7 +5,7 @@
 import sys, subprocess, datetime, random
 
 def walk(x0=0, step=1, count=10, seed=0):
-    """ Random walk 
+    """ Random walk
         x0   : initial position (default 0)
         step : step size (default 1)
         count: number of steps (default 10)
@@ -36,19 +36,16 @@ if __name__ == '__main__':
     assert walk(0, 1, 10, 1) == [-1, 0, 1, 0, -1, -2, -1, 0, -1, -2]
 
     # Simulation parameters
-    parameters = { 'x0':    0,
-                   'step':  1,
-                   'count': 10,
-                   'seed' : 1 }
-    path = walk(**parameters)
-    results = {'data':       path,
+    x0, step, count, seed = 0, 1, 10, 1
+    parameters = {'x0': x0, 'step': step, 'count': count, 'seed' : seed}
+    path = walk(x0=x0, step=step, count=count, seed=seed)
+    results = {'data'      : path,
                'parameters': parameters,
-               'timestamp':  str(datetime.datetime.utcnow()),
-               'revision':   revision,
-               'system':     sys.version}
+               'timestamp' : str(datetime.datetime.utcnow()),
+               'revision'  : revision,
+               'system'    : sys.version}
 
     # Save & display results
     with open("results-R4.txt", "w") as fd:
         fd.write(str(results))
-
     print(path)
