@@ -2,7 +2,7 @@
 # Copyright (c) 2017 Nicolas P. Rougier and Fabien C.Y. Benureau
 # Release under the BSD 2-clause license
 # Tested with Python 3.6 / Numpy 1.12.0 / macOS 10.12.4 / 64 bits architecture
-import os, sys, datetime, random
+import sys, subprocess, datetime, random
 
 def walk(x0=0, step=1, count=10, seed=0):
     """ Random walk 
@@ -24,6 +24,14 @@ def walk(x0=0, step=1, count=10, seed=0):
 
 
 if __name__ == '__main__':
+    # If repository is dirty, don't do anything
+    if subprocess.call(("git", "diff-index", "--quiet", "HEAD")):
+        print("Repository is dirty, please commit first")
+        sys.exit(1)
+
+    # Get git hash if any
+    revision = subprocess.check_output(("git", "rev-parse", "HEAD"))
+
     # Unit test checking reproducibility
     assert walk(0, 1, 10, 1) == [-1, 0, 1, 0, -1, -2, -1, 0, -1, -2]
 
@@ -34,10 +42,10 @@ if __name__ == '__main__':
                    'seed' : 1 }
     path = walk(**parameters)
     results = {'data':       path,
-               'parameters': parameters
-               'timestamp':  str(datetime.datetime.utcnow())
-               'os' :        os.uname().version,
-               'system' :    sys.version }
+               'parameters': parameters,
+               'timestamp':  str(datetime.datetime.utcnow()),
+               'revision':   revision,
+               'system':     sys.version}
 
     # Save & display results
     with open("results-R4.txt", "w") as fd:

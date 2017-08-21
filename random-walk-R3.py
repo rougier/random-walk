@@ -2,7 +2,7 @@
 # Copyright (c) 2017 Nicolas P. Rougier and Fabien C. Y. Benureau
 # Release under the BSD 2-clause license
 # Tested with CPython 3.6.1 / macOS 10.12.4 / 64 bits architecture
-import os, sys, datetime, random
+import sys, subprocess, datetime, random
 
 def walk():
     path = []
@@ -15,6 +15,14 @@ def walk():
         path.append(x)
     return path
 
+# If repository is dirty, don't run anything
+if subprocess.call(("git", "diff-index", "--quiet", "HEAD")):
+    print("Repository is dirty, please commit first")
+    sys.exit(1)
+
+# Get git hash if any
+revision = subprocess.check_output(("git", "rev-parse", "HEAD"))
+    
 # Unit test
 random.seed(1)
 assert walk() == [-1, 0, 1, 0, -1, -2, -1, 0, -1, -2]
@@ -28,8 +36,8 @@ path = walk()
 print(path)
 results = { 'data':      path,
             'seed':      seed,
-            'timestamp': str(datetime.datetime.utcnow())
-            'os' :       os.uname().version,
+            'timestamp': str(datetime.datetime.utcnow()),
+            'revision':  revision,
             'system' :   sys.version }
 with open("results-R3.txt", "w") as fd:
     fd.write(str(results))
