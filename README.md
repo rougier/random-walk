@@ -6,3 +6,5 @@ Source code for **Re-run, Repeat, Reproduce, Reuse, Replicate: Transforming Code
 * [random-walk-R3.py](random-walk-R3.py): Reproducible
 * [random-walk-R4.py](random-walk-R4.py): Re-usable
 * [random-walk-R5.py](random-walk-R5.py): Replicable
+
+[![DOI](https://zenodo.org/badge/89020119.svg)](https://zenodo.org/badge/latestdoi/89020119)
