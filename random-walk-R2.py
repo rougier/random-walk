@@ -2,7 +2,7 @@
 # Tested with Python 3
 import random
 
-random.seed(0) # RNG initialization
+random.seed(1) # RNG initialization
 
 x =  0
 walk = []
