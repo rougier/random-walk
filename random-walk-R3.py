@@ -5,15 +5,15 @@
 import sys, subprocess, datetime, random
 
 def generate_walk():
-    path = []
+    walk = []
     x = 0
     for i in range(10):
         if random.uniform(-1, +1) > 0:
             x += 1
         else:
             x -= 1
-        path.append(x)
-    return path
+        walk.append(x)
+    return walk
 
 # If repository is dirty, don't run anything
 if subprocess.call(('git', 'diff-index', '--quiet', 'HEAD')):
