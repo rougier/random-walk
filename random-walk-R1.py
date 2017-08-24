@@ -2,10 +2,13 @@
 # Tested with Python 3
 import random
 
-walk, total = [], 0
+x =  0
+walk = []
 for i in range(10):
-    step = random.choice([-1,+1])
-    total += step
-    walk.append(total)
+    if random.uniform(-1, +1) > 0:
+        x += 1
+    else:
+        x -= 1
+    walk.append(x)
 
 print(walk)

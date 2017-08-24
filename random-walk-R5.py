@@ -1,14 +1,14 @@
 # Random walk (R5: replicable)
 # Copyright (c) 2017 Nicolas P. Rougier and Fabien C.Y. Benureau
 # Release under the BSD 2-clause license
-# Tested with Python 3.6 / Numpy 1.12.0 / macOS 10.12.4 / 64 bits architecture
+# Tested with CPython 3.6.2 / NumPy 1.12.0 / macOS 10.12.6 / 64 bits architecture
 import random
 import numpy as np
 
 def _rng(seed):
     """ Return a numpy random number generator initialized with seed
         as it would be with python random generator.
-    """ 
+    """
     rng = random.Random()
     rng.seed(seed)
     _, keys, _ = rng.getstate()
@@ -26,7 +26,7 @@ def walk(n, seed):
 
 if __name__ == '__main__':
     # Unit test
-    assert walk(n=10, seed=1) == [-1, 0, 1, 0, -1, -2, -1, 0, -1, -2]
+    assert walk(n=10, seed=42) == [1, 0, -1, -2, -1, 0, 1, 0, -1, -2]
 
     # Random walk for 10 steps, initialization with seed=1
     seed = 1
