@@ -5,8 +5,8 @@
 import sys, subprocess, datetime, random
 
 def generate_walk():
-    walk = []
     x = 0
+    walk = []
     for i in range(10):
         if random.uniform(-1, +1) > 0:
             x += 1

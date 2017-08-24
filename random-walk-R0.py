@@ -3,8 +3,6 @@ import random
 
 x = 0
 for i in xrange(10):
-    if random.uniform(-1, +1) > 0:
-        x += 1
-    else:
-        x -= 1
+    step = random.choice([-1,+1])
+    x += step
     print x,
