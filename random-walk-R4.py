@@ -42,7 +42,7 @@ def generate_results(count, x0=0, step=1, seed=0):
 
 if __name__ == '__main__':
     # Unit test checking reproducibility (will fail with Python<=3.2)
-    assert generate_walk(10, 0, 1, 1) == [-1, 0, 1, 0, -1, -2, -1, 0, -1, -2]
+    assert generate_walk(10, 0, 1, 42) == [1, 0, -1, -2, -1, 0, 1, 0, -1, -2]
 
     # Simulation parameters
     count, x0, seed = 10, 0, 1

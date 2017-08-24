@@ -8,7 +8,7 @@ import numpy as np
 def _rng(seed):
     """ Return a numpy random number generator initialized with seed
         as it would be with python random generator.
-    """ 
+    """
     rng = random.Random()
     rng.seed(seed)
     _, keys, _ = rng.getstate()
@@ -26,7 +26,7 @@ def walk(n, seed):
 
 if __name__ == '__main__':
     # Unit test
-    assert walk(n=10, seed=1) == [-1, 0, 1, 0, -1, -2, -1, 0, -1, -2]
+    assert walk(n=10, seed=42) == [1, 0, -1, -2, -1, 0, 1, 0, -1, -2]
 
     # Random walk for 10 steps, initialization with seed=1
     seed = 1

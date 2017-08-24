@@ -24,8 +24,8 @@ if subprocess.call(("git", "diff-index", "--quiet", "HEAD")):
 revision = subprocess.check_output(("git", "rev-parse", "HEAD"))
 
 # Unit test
-random.seed(1)
-assert generate_walk() == [-1, 0, 1, 0, -1, -2, -1, 0, -1, -2]
+random.seed(42)
+assert generate_walk() == [1, 0, -1, -2, -1, 0, 1, 0, -1, -2]
 
 # Random walk for 10 steps
 seed = 1
