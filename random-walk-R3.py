@@ -4,14 +4,14 @@
 # Tested with CPython 3.6.1 / macOS 10.12.4 / 64 bits architecture
 import sys, subprocess, datetime, random
 
-def walk():
+def generate_walk():
     path = []
     x = 0
     for i in range(10):
         if random.uniform(-1, +1) > 0:
-            x = x + 1
+            x += 1
         else:
-            x = x - 1
+            x -= 1
         path.append(x)
     return path
 
@@ -25,16 +25,16 @@ revision = subprocess.check_output(("git", "rev-parse", "HEAD"))
 
 # Unit test
 random.seed(1)
-assert walk() == [-1, 0, 1, 0, -1, -2, -1, 0, -1, -2]
+assert generate_walk() == [-1, 0, 1, 0, -1, -2, -1, 0, -1, -2]
 
 # Random walk for 10 steps
 seed = 1
 random.seed(seed)
-path = walk()
+walk = generate_walk()
 
 # Display & save results
-print(path)
-results = {'data'     : path,
+print(walk)
+results = {'data'     : walk,
            'seed'     : seed,
            'timestamp': str(datetime.datetime.utcnow()),
            'revision' : revision,
