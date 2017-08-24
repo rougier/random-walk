@@ -16,12 +16,12 @@ def generate_walk():
     return path
 
 # If repository is dirty, don't run anything
-if subprocess.call(("git", "diff-index", "--quiet", "HEAD")):
-    print("Repository is dirty, please commit first")
+if subprocess.call(('git', 'diff-index', '--quiet', 'HEAD')):
+    print('Repository is dirty, please commit first')
     sys.exit(1)
 
 # Get git hash if any
-revision = subprocess.check_output(("git", "rev-parse", "HEAD"))
+revision = subprocess.check_output(('git', 'rev-parse', 'HEAD'))
 
 # Unit test
 random.seed(42)
@@ -39,5 +39,5 @@ results = {'data'     : walk,
            'timestamp': str(datetime.datetime.utcnow()),
            'revision' : revision,
            'system'   : sys.version}
-with open("results-R3.txt", "w") as fd:
+with open('results-R3.txt', 'w') as fd:
     fd.write(str(results))

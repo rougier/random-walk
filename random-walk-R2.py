@@ -15,5 +15,5 @@ for i in range(10):
 
 print(walk)
 # Saving output to disk
-with open("results-R2.txt", "w") as fd:
+with open('results-R2.txt', 'w') as fd:
     fd.write(str(walk))

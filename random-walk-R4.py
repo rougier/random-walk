@@ -25,12 +25,12 @@ def generate_walk(count, x0=0, step=1, seed=0):
 def generate_results(count, x0=0, step=1, seed=0):
     """Compute a walk and return it alongside its context"""
     # If repository is dirty, don't do anything
-    if subprocess.call(("git", "diff-index", "--quiet", "HEAD")):
-        print("Repository is dirty, please commit first")
+    if subprocess.call(('git', 'diff-index', '--quiet', 'HEAD')):
+        print('Repository is dirty, please commit first')
         sys.exit(1)
 
     # Get git hash if any
-    revision = subprocess.check_output(("git", "rev-parse", "HEAD"))
+    revision = subprocess.check_output(('git', 'rev-parse', 'HEAD'))
 
     # Compute results
     walk = generate_walk(count=count, x0=x0, step=step, seed=seed)
@@ -49,6 +49,6 @@ if __name__ == '__main__':
     results = generate_results(count, x0=x0, seed=seed)
 
     # Save & display results
-    with open("results-R4.txt", "w") as fd:
+    with open('results-R4.txt', 'w') as fd:
         fd.write(str(results))
     print(results['data'])
