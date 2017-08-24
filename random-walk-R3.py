@@ -1,7 +1,7 @@
 # Random walk (R3: reproducible)
 # Copyright (c) 2017 Nicolas P. Rougier and Fabien C. Y. Benureau
 # Release under the BSD 2-clause license
-# Tested with CPython 3.6.1 / macOS 10.12.4 / 64 bits architecture
+# Tested with CPython 3.6.2 / macOS 10.12.6 / 64 bits architecture
 import sys, subprocess, datetime, random
 
 def generate_walk():

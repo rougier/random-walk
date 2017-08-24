@@ -1,7 +1,7 @@
 # Random walk (R5: replicable)
 # Copyright (c) 2017 Nicolas P. Rougier and Fabien C.Y. Benureau
 # Release under the BSD 2-clause license
-# Tested with Python 3.6 / Numpy 1.12.0 / macOS 10.12.4 / 64 bits architecture
+# Tested with CPython 3.6.2 / NumPy 1.12.0 / macOS 10.12.6 / 64 bits architecture
 import random
 import numpy as np
 
