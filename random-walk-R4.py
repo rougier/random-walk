@@ -24,7 +24,7 @@ def compute_walk(count, x0=0, step=1, seed=0):
 
 def compute_results(count, x0=0, step=1, seed=0):
     """Compute a walk and return it with context"""
-    # If repository is dirty, don"t do anything
+    # If repository is dirty, don't do anything
     if subprocess.call(("git", "diff-index",
                         "--quiet", "HEAD")):
         print("Repository is dirty, please commit")

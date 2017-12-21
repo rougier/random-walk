@@ -14,7 +14,7 @@ def compute_walk():
         walk.append(x)
     return walk
 
-# If repository is dirty, don"t run anything
+# If repository is dirty, don't run anything
 if subprocess.call(("git", "diff-index",
                     "--quiet", "HEAD")):
     print("Repository is dirty, please commit first")
